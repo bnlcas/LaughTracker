@@ -17,7 +17,6 @@ while(True):
     sound_recording = sd.rec(int(sample_duration * sample_rate), samplerate=sample_rate, channels=1)
     sound_recording = np.transpose(sound_recording)[0]
     sd.wait()
-    print sound_recording[0]
     was_voice = voice_detector.speech_on
     voice_detector.CheckActivation(sound_recording)
     if(was_voice and not voice_detector.speech_on):
