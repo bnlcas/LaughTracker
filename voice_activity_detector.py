@@ -38,6 +38,6 @@ class VoiceActivityDetector():
 
     def ClassifySpeech(self, band_energy):
         band_energy.extend(self.prior_bands)
-        prior_bands = band_energy[0:len(self.band_bins)]
+        self.prior_bands = band_energy[0:len(self.band_bins)]
         x = np.reshape(band_energy, (1,len(band_energy)))
         return self.clf.predict(x)[0]
