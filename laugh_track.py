@@ -5,7 +5,7 @@ import soundfile as sf
 
 #laugh_sound, sample_rate = sf.read('laugh.wav', dtype='float32')
 sample_rate = 44100
-sample_duration = 0.25  # seconds
+sample_duration = 0.2  # seconds
 voice_detector = vad.VoiceActivityDetector(sample_rate)
 
 def PlayLaughter():
@@ -19,5 +19,7 @@ while(True):
     sd.wait()
     was_voice = voice_detector.speech_on
     voice_detector.CheckActivation(sound_recording)
-    if(was_voice and not voice_detector.speech_on):
-        PlayLaughter()
+    if(voice_detector.speech_on):
+        print '...'
+    if(voice_detector.DetectSpeechEnd()):
+        PlayLaughter();

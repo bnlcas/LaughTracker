@@ -9,10 +9,8 @@ class VoiceActivityDetector():
         #self.sample_rate = 44100
         self.speech_on = False
 
-        #Spectrum Based:
-        self.speech_energy_threshold = 0.6 #60% of energy in voice band
-        self.speech_start_band = 75
-        self.speech_end_band = 280
+        self.detection_buffer_length = 3
+        self.detection_buffer = [False] * self.detection_buffer_length
 
         # Classifier:
         self.band_bins = [180, 250, 360, 500, 1000, 2000, 5000, 10000, 25000]
@@ -23,6 +21,17 @@ class VoiceActivityDetector():
     def CheckActivation(self, data):
         band_energy = self.ExtractPowerBands(data)
         self.speech_on = self.ClassifySpeech(band_energy)
+        self.UpdateDetectionBuffer()
+
+    def UpdateDetectionBuffer(self):
+        self.detection_buffer.append(self.speech_on)
+        self.detection_buffer.pop(0)
+
+    def DetectSpeechEnd(self):
+        if not self.speech_on:
+            if(sum(self.detection_buffer) >= (self.detection_buffer_length -1)):
+                return True
+        return False
 
     def ExtractPowerBands(self, x):
         freq, power = signal.periodogram(x, self.sample_rate)
