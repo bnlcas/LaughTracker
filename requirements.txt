@@ -3,3 +3,4 @@ numpy==1.11.1
 PySoundFile==0.9.0.post1
 scipy==0.17.1
 sounddevice==0.3.7
+scikit-learn==0.18.1
