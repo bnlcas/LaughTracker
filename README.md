@@ -8,3 +8,8 @@ Detects voice activity and plays laughter after pauses in speech.
 * Install Dependencies
 * run laugh_track.py
 * Make funny comments...
+
+## Run:
+Currently runs on python 2.7
+In the root directory run:
+`python laugh_track.py`
