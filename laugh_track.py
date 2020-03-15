@@ -11,7 +11,6 @@ voice_detector = vad.VoiceActivityDetector(sample_rate)
 def PlayLaughter():
     sd.play(laugh_sound, sample_rate)
     status = sd.wait()
-    #print 'ha\n'
 
 while(True):
     sound_recording = sd.rec(int(sample_duration * sample_rate), samplerate=sample_rate, channels=1)
@@ -20,6 +19,6 @@ while(True):
     was_voice = voice_detector.speech_on
     voice_detector.CheckActivation(sound_recording)
     if(voice_detector.speech_on):
-        print '...'
+        print('...')
     if(voice_detector.DetectSpeechEnd()):
         PlayLaughter();

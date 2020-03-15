@@ -1,4 +1,4 @@
-import cPickle
+import pickle
 import numpy as np
 import scipy.signal as signal
 from sklearn.svm import SVC
@@ -15,8 +15,7 @@ class VoiceActivityDetector():
         # Classifier:
         self.band_bins = [180, 250, 360, 500, 1000, 2000, 5000, 10000, 25000]
         self.prior_bands = [0.0]*len(self.band_bins)
-        with open('svm_classifier.pkl', 'rb') as fid:
-            self.clf = cPickle.load(fid)
+        self.clf = pickle.load(open('svm_classifier_2.pkl', 'rb'))
 
     def CheckActivation(self, data):
         band_energy = self.ExtractPowerBands(data)
