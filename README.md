@@ -10,6 +10,6 @@ Detects voice activity and plays laughter after pauses in speech.
 * Make funny comments...
 
 ## Run:
-Currently runs on python 2.7
+Currently runs on python 3.6
 In the root directory run:
 `python laugh_track.py`
